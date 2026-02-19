@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Just For You ❤️</title>
+
+<style>
+body{
+  margin:0;
+  text-align:center;
+  font-family:Arial;
+  overflow:hidden;
+  color:white;
+  animation:bgMove 10s infinite alternate;
+}
+
+@keyframes bgMove{
+  0%{background:linear-gradient(45deg,#ff0000,#ff7300,#fffb00);}
+  25%{background:linear-gradient(45deg,#00ffcc,#0066ff,#6600ff);}
+  50%{background:linear-gradient(45deg,#ff00cc,#ff0066,#ffcc00);}
+  75%{background:linear-gradient(45deg,#00ff66,#00ccff,#cc00ff);}
+  100%{background:linear-gradient(45deg,#ff0000,#ff7300,#fffb00);}
+}
+
+.container{
+  margin-top:80px;
+  padding:20px;
+}
+
+h1{
+  font-size:30px;
+  text-shadow:0 0 20px white;
+}
+
+#typing{
+  font-size:20px;
+  min-height:80px;
+  margin-top:20px;
+}
+
+button{
+  padding:15px 35px;
+  font-size:20px;
+  border:none;
+  border-radius:40px;
+  margin-top:30px;
+  cursor:pointer;
+  background:white;
+  color:#ff0066;
+  box-shadow:0 0 20px white;
+}
+
+#final{
+  display:none;
+  font-size:32px;
+  margin-top:30px;
+  animation:glow 1s infinite alternate;
+}
+
+@keyframes glow{
+  from{text-shadow:0 0 10px white;}
+  to{text-shadow:0 0 30px yellow;}
+}
+
+.heart{
+  position:fixed;
+  top:-20px;
+  font-size:25px;
+  animation:fall 4s linear forwards;
+}
+
+.confetti{
+  position:fixed;
+  width:10px;
+  height:10px;
+  animation:fall 3s linear forwards;
+}
+
+.spark{
+  position:fixed;
+  width:6px;
+  height:6px;
+  background:white;
+  border-radius:50%;
+  animation:fall 5s linear forwards;
+}
+
+@keyframes fall{
+  to{
+    transform:translateY(100vh);
+    opacity:0;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+  <h1>Hey 🙂</h1>
+  <div id="typing"></div>
+  <button onclick="startMagic()">Click Here ❤️</button>
+  <div id="final">Maybe We Deserve A Fresh Start ❤️✨</div>
+</div>
+
+<script>
+var text="Exams khatam ho rahe hain... Aur mujhe laga kuch baatein reh gayi thi. Agar tum comfortable ho, to kya hum phir se baat shuru kar sakte hain? 🙂";
+var i=0;
+function type(){
+  if(i<text.length){
+    document.getElementById("typing").innerHTML+=text.charAt(i);
+    i++;
+    setTimeout(type,40);
+  }
+}
+type();
+
+function startMagic(){
+  document.getElementById("final").style.display="block";
+
+  for(let i=0;i<40;i++){
+    let heart=document.createElement("div");
+    heart.innerHTML="❤️";
+    heart.className="heart";
+    heart.style.left=Math.random()*window.innerWidth+"px";
+    document.body.appendChild(heart);
+    setTimeout(()=>heart.remove(),4000);
+  }
+
+  for(let i=0;i<60;i++){
+    let conf=document.createElement("div");
+    conf.className="confetti";
+    conf.style.left=Math.random()*window.innerWidth+"px";
+    conf.style.background="hsl("+Math.random()*360+",100%,50%)";
+    document.body.appendChild(conf);
+    setTimeout(()=>conf.remove(),3000);
+  }
+
+  for(let i=0;i<40;i++){
+    let spark=document.createElement("div");
+    spark.className="spark";
+    spark.style.left=Math.random()*window.innerWidth+"px";
+    document.body.appendChild(spark);
+    setTimeout(()=>spark.remove(),5000);
+  }
+
+  document.body.style.transition="0.3s";
+  document.body.style.background="black";
+  setTimeout(()=>{
+    document.body.style.background="";
+  },300);
+}
+</script>
+
+</body>
+</html>
